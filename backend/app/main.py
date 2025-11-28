@@ -1,7 +1,5 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from starlette.middleware.base import BaseHTTPMiddleware
-from starlette.requests import Request
 from app.database import engine, Base
 from app.routers import auth, users, cases, tasks, documents, notes, clients, companies
 
@@ -9,20 +7,6 @@ from app.routers import auth, users, cases, tasks, documents, notes, clients, co
 # To create tables: alembic upgrade head
 
 app = FastAPI(title="CasePilot API", version="1.0.0")
-
-# Middleware to add trailing slash to paths
-class TrailingSlashMiddleware(BaseHTTPMiddleware):
-    async def dispatch(self, request: Request, call_next):
-        if not request.url.path.endswith('/') and request.url.path != '/':
-            # Add trailing slash
-            url = request.url.path + '/'
-            if request.url.query:
-                url += '?' + request.url.query
-            request.scope['path'] = url
-        response = await call_next(request)
-        return response
-
-app.add_middleware(TrailingSlashMiddleware)
 
 # CORS middleware
 import os

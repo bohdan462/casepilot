@@ -9,7 +9,7 @@ from app.models import UserRole
 
 router = APIRouter()
 
-@router.get("/", response_model=List[schemas.ClientResponse])
+@router.get("", response_model=List[schemas.ClientResponse])
 async def get_clients(
     skip: int = 0,
     limit: int = 100,
@@ -46,7 +46,7 @@ async def get_client(
         raise HTTPException(status_code=404, detail="Client not found")
     return client
 
-@router.post("/", response_model=schemas.ClientResponse)
+@router.post("", response_model=schemas.ClientResponse)
 async def create_client(
     client_data: schemas.ClientCreate,
     db: Session = Depends(get_db),
