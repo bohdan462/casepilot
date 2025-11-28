@@ -544,8 +544,15 @@ function AddTaskModal({ onClose, onSave, isLoading, users }: any) {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     const submitData: any = { ...formData }
+    // Convert assignee_id to number or remove if empty
     if (submitData.assignee_id) {
       submitData.assignee_id = parseInt(submitData.assignee_id)
+    } else {
+      delete submitData.assignee_id
+    }
+    // Remove due_date if empty
+    if (!submitData.due_date) {
+      delete submitData.due_date
     }
     onSave(submitData)
   }
