@@ -6,7 +6,7 @@ from app.routers import auth, users, cases, tasks, documents, notes, clients, co
 # Database tables are managed by Alembic migrations
 # To create tables: alembic upgrade head
 
-app = FastAPI(title="CasePilot API", version="1.0.0")
+app = FastAPI(title="CasePilot API", version="1.0.0", redirect_slashes=False)
 
 # CORS middleware
 import os
