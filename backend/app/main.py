@@ -3,15 +3,18 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.database import engine, Base
 from app.routers import auth, users, cases, tasks, documents, notes, clients, companies
 
-# Create database tables
-Base.metadata.create_all(bind=engine)
+# Database tables are managed by Alembic migrations
+# To create tables: alembic upgrade head
 
 app = FastAPI(title="CasePilot API", version="1.0.0")
 
 # CORS middleware
+import os
+allowed_origins = os.getenv("ALLOWED_ORIGINS", "http://localhost:3000,http://localhost:5173").split(",")
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://localhost:5173"],
+    allow_origins=allowed_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

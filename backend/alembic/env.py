@@ -16,14 +16,23 @@ if config.config_file_name is not None:
 
 # add your model's MetaData object here
 # for 'autogenerate' support
-# from myapp import mymodel
-# target_metadata = mymodel.Base.metadata
-target_metadata = None
+import os
+import sys
+from dotenv import load_dotenv
 
-# other values from the config, defined by the needs of env.py,
-# can be acquired:
-# my_important_option = config.get_main_option("my_important_option")
-# ... etc.
+# Add parent directory to path to import app
+sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+
+load_dotenv()
+
+from app.database import Base
+from app import models
+
+target_metadata = Base.metadata
+
+# Override sqlalchemy.url with DATABASE_URL from environment
+if os.getenv('DATABASE_URL'):
+    config.set_main_option('sqlalchemy.url', os.getenv('DATABASE_URL'))
 
 
 def run_migrations_offline() -> None:
