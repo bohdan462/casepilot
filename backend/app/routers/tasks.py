@@ -21,7 +21,7 @@ def can_access_task(user: models.User, task: models.Task) -> bool:
     from app import utils
     return utils.can_access_case(user, task.case)
 
-@router.get("/", response_model=List[schemas.TaskResponse])
+@router.get("", response_model=List[schemas.TaskResponse])
 async def get_tasks(
     skip: int = 0,
     limit: int = 100,
@@ -93,7 +93,7 @@ async def get_task(
     
     return task
 
-@router.post("/", response_model=schemas.TaskResponse)
+@router.post("", response_model=schemas.TaskResponse)
 async def create_task(
     task_data: schemas.TaskCreate,
     db: Session = Depends(get_db),

@@ -12,7 +12,7 @@ def can_access_note(user: models.User, note: models.Note) -> bool:
     from app import utils
     return utils.can_access_case(user, note.case)
 
-@router.get("/", response_model=List[schemas.NoteResponse])
+@router.get("", response_model=List[schemas.NoteResponse])
 async def get_notes(
     case_id: int,
     pinned_only: bool = False,
@@ -53,7 +53,7 @@ async def get_note(
     
     return note
 
-@router.post("/", response_model=schemas.NoteResponse)
+@router.post("", response_model=schemas.NoteResponse)
 async def create_note(
     note_data: schemas.NoteCreate,
     db: Session = Depends(get_db),

@@ -8,7 +8,7 @@ from app.models import UserRole
 
 router = APIRouter()
 
-@router.get("/", response_model=List[schemas.UserResponse])
+@router.get("", response_model=List[schemas.UserResponse])
 async def get_users(
     skip: int = 0,
     limit: int = 100,
@@ -33,7 +33,7 @@ async def get_user(
         raise HTTPException(status_code=404, detail="User not found")
     return user
 
-@router.post("/", response_model=schemas.UserResponse)
+@router.post("", response_model=schemas.UserResponse)
 async def create_user(
     user_data: schemas.UserCreate,
     db: Session = Depends(get_db),

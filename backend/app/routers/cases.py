@@ -17,7 +17,7 @@ def generate_case_number() -> str:
     unique_id = str(uuid.uuid4())[:8].upper()
     return f"CASE-{year}-{unique_id}"
 
-@router.get("/", response_model=List[schemas.CaseResponse])
+@router.get("", response_model=List[schemas.CaseResponse])
 async def get_cases(
     skip: int = 0,
     limit: int = 100,
@@ -83,7 +83,7 @@ async def get_case(
     
     return case
 
-@router.post("/", response_model=schemas.CaseResponse)
+@router.post("", response_model=schemas.CaseResponse)
 async def create_case(
     case_data: schemas.CaseCreate,
     db: Session = Depends(get_db),

@@ -7,7 +7,7 @@ from app.models import UserRole
 
 router = APIRouter()
 
-@router.get("/", response_model=List[schemas.CompanyResponse])
+@router.get("", response_model=List[schemas.CompanyResponse])
 async def get_companies(
     skip: int = 0,
     limit: int = 100,
@@ -38,7 +38,7 @@ async def get_company(
         raise HTTPException(status_code=404, detail="Company not found")
     return company
 
-@router.post("/", response_model=schemas.CompanyResponse)
+@router.post("", response_model=schemas.CompanyResponse)
 async def create_company(
     company_data: schemas.CompanyCreate,
     db: Session = Depends(get_db),

@@ -21,7 +21,7 @@ def can_access_document(user: models.User, document: models.Document) -> bool:
     from app import utils
     return utils.can_access_case(user, document.case)
 
-@router.get("/", response_model=List[schemas.DocumentResponse])
+@router.get("", response_model=List[schemas.DocumentResponse])
 async def get_documents(
     case_id: Optional[int] = None,
     document_type: Optional[str] = None,
@@ -79,7 +79,7 @@ async def get_document(
     
     return document
 
-@router.post("/", response_model=schemas.DocumentResponse)
+@router.post("", response_model=schemas.DocumentResponse)
 async def upload_document(
     case_id: int,
     document_type: Optional[str] = None,
