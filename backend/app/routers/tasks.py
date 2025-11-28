@@ -99,6 +99,9 @@ async def create_task(
     db: Session = Depends(get_db),
     current_user: models.User = Depends(auth.get_current_active_user)
 ):
+    import logging
+    logging.info(f"Creating task with data: {task_data.dict()}")
+    
     # Check if case exists and user can access it
     case = db.query(models.Case).filter(models.Case.id == task_data.case_id).first()
     if not case:
