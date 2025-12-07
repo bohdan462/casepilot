@@ -35,7 +35,7 @@ export default function Login() {
               <Briefcase className="h-8 w-8 text-white" />
             </div>
             <h1 className="text-3xl font-bold text-gray-900">CasePilot</h1>
-            <p className="text-gray-600 mt-2">Your firm's control center</p>
+            <p className="text-gray-600 mt-2">Log In</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">
