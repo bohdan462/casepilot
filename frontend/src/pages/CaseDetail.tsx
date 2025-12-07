@@ -3,7 +3,7 @@ import { useParams, useNavigate, Link } from 'react-router-dom'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import api from '../services/api'
 import { useAuth } from '../contexts/AuthContext'
-import { Edit, Plus, Upload, CheckSquare, FileText, MessageSquare, Sparkles, X, Trash2 } from 'lucide-react'
+import { Edit, Plus, Upload, CheckSquare, FileText, MessageSquare, X, Trash2 } from 'lucide-react'
 import { CaseStatus, TaskStatus, TaskPriority, UserRole } from '../types'
 import { format } from 'date-fns'
 
@@ -372,16 +372,7 @@ export default function CaseDetail() {
               </div>
 
               <div className="space-y-6">
-                <div className="bg-gradient-to-br from-purple-50 to-blue-50 border border-purple-200 rounded-lg p-4">
-                  <div className="flex items-center mb-2">
-                    <Sparkles className="h-5 w-5 text-purple-600 mr-2" />
-                    <h3 className="font-semibold text-purple-900">AI Summary</h3>
-                    <span className="ml-auto text-xs text-purple-600 bg-purple-100 px-2 py-1 rounded">Coming Soon</span>
-                  </div>
-                  <p className="text-sm text-purple-700">
-                    AI-powered case summaries, key dates, and action items will appear here.
-                  </p>
-                </div>
+
               </div>
             </div>
           )}
@@ -824,21 +815,7 @@ function DocumentsTab({ documents, onDeleteDocument, format }: any) {
             </table>
           </div>
         </div>
-        <div>
-          <div className="bg-gradient-to-br from-purple-50 to-blue-50 border border-purple-200 rounded-lg p-4">
-            <div className="flex items-center mb-2">
-              <Sparkles className="h-5 w-5 text-purple-600 mr-2" />
-              <h3 className="font-semibold text-purple-900">AI Document Assistant</h3>
-              <span className="ml-auto text-xs text-purple-600 bg-purple-100 px-2 py-1 rounded">Coming Soon</span>
-            </div>
-            <ul className="text-sm text-purple-700 space-y-2 mt-3">
-              <li>• Summarize all documents</li>
-              <li>• Extract key dates and facts</li>
-              <li>• Find missing documents</li>
-              <li>• Generate case timeline</li>
-            </ul>
-          </div>
-        </div>
+
       </div>
     </div>
   )
